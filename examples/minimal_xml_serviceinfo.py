@@ -41,4 +41,4 @@ service.media.append(Multimedia('http://www.capitalfm.com/logos/320x240.png', Mu
 ensemble.services.append(service)
 
 from dabepg.xml import marshall
-print marshall(info, indent='  ')
+print marshall(info, indent='\t')

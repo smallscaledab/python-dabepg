@@ -25,6 +25,7 @@ import datetime
 import locale
 import re
 from dateutil.tz import tzlocal
+from docutils.nodes import topic
 
 MAX_SHORTCRID = 16777215
 TRIGGER_PATTERN = '[0-9a-fA-F]{8}'
@@ -184,8 +185,8 @@ class Crid:
         
         pattern = re.compile(CRID_PATTERN)
         matcher = pattern.search(string)
-        authority = matcher.group(0)
-        data = matcher.group(1)
+        authority = matcher.group(1)
+        data = matcher.group(2)
         return Crid(authority, data)
         
     def __str__(self):
@@ -217,15 +218,15 @@ class Ensemble:
         return '<Ensemble: %s>' % str(self)
     
     
-class Epg:
-    """The root of an EPG schedule"""
+class ProgrammeInfo:
+    """The root of a programme schedule"""
     
     DAB="DAB"
     DRM="DRM"
     
-    def __init__(self, schedule, type=DAB):
+    def __init__(self, type=DAB):
         self.type = type
-        self.schedule = schedule if schedule is not None else Schedule()
+        self.schedules = []
     
 class Link:
     """This is used to link to additional information of content."""    
@@ -408,6 +409,20 @@ def suggest_names(names):
             result.append(LongName(name))            
     return result
         
+class Named:
+    """
+    Holds and returns names in a variety of lengths: Short, Medium, Long
+    """
+    
+    def __init__(self):
+        self.names = []
+    
+    def get_name(self, max_length=LongName.max_length):
+        """returns the first name set with a length at or below the max_length field, which 
+           defaults to the MAX_LENGTH of a LongName field"""
+        for t in [LongName, MediumName, ShortName]:
+            for name in [x for x in self.names if isinstance(x, t)]:
+                if len(name.text) <= max_length: return name        
        
 class Membership:
     """The member of a :class:Programme or :class:ProgrammeEvent to a group, references by a
@@ -464,7 +479,7 @@ class Multimedia:
         elif type != Multimedia.LOGO_UNRESTRICTED and (height or width):
             raise ValueError('should not specify width or height when type is restricted')    
         
-class Programme:
+class Programme(Named):
     """Describes and locates a programme.
     
     :param shortcrid: Short Crid
@@ -483,13 +498,13 @@ class Programme:
     """   
     
     def __init__(self, shortcrid, crid=None, bitrate=None, onair=True, recommendation=True, version=1):
+        Named.__init__(self)
         self.shortcrid = shortcrid
         self.crid = crid
         self.version = version
         self.bitrate = bitrate
         self.onair = onair
         self.recommendation = recommendation
-        self.names = []
         self.locations = []
         self.media = []
         self.genres = []
@@ -527,7 +542,7 @@ class Programme:
         return '<Programme: %s>' % str(self)    
     
     
-class ProgrammeEvent:
+class ProgrammeEvent(Named):
     """Describes and locates a programme event
     
     :param shortcrid: Short Crid
@@ -546,6 +561,7 @@ class ProgrammeEvent:
     """       
     
     def __init__(self, shortcrid, originator=None, crid=None, version=None, bitrate=None, onair=True, recommendation=False):
+        Named.__init__(self)
         self.shortcrid = shortcrid
         self.originator = originator
         self.crid = crid
@@ -553,7 +569,6 @@ class ProgrammeEvent:
         self.bitrate = bitrate
         self.onair = onair
         self.recommendation = recommendation
-        self.names = []
         self.locations = []
         self.media = []
         self.genres = []
@@ -579,7 +594,16 @@ class Schedule:
         
     def get_scope(self):
         """Returns the suggested scope of the schedule, taken as an aggregate of the bearers
-        and times in the locations of each programme"""
+        and times in the locations of each programme
+        
+        TODO this should be deprecated in favour of a user-set property, with guards in place
+        to ensure that the added programmes do not exceed the indicated scope (but the scope
+        may exceed the interval aggregate of the programmes)
+        
+        Future versions of the specific more explicitly detail that the scope can be used to
+        'clear down' a scheduled interval, and that bearers can be inherited from a service 
+        into its programmes, with bearer being optional.
+        """
         
         start = None
         end = None
@@ -607,19 +631,18 @@ class Schedule:
 class Scope:
     """Contains the times and periods covered by this schedule"""
     
-    def __init__(self, start, end, services = []):
+    def __init__(self, start, end, bearers = []):
         self.start = start
         self.end = end
-        self.services = services
+        self.bearers = bearers
 
     def __str__(self):
-        return 'start=%s, end=%s, services=%s>' % (self.start, self.end, self.services)
+        return 'interval=%s/%s, bearers=%s>' % (self.start.isoformat(), self.end.isoformat(), [str(x) for x in self.bearers])
     
     def __repr__(self):
         return '<Scope: %s>' % str(self)
-
                 
-class Service:
+class Service(Named):
     """DAB Service details
 
     :param id: primary Service ID
@@ -640,26 +663,24 @@ class Service:
     PROPRIETARY = "proprietary"
     
     def __init__(self, id, bitrate=None, type=PRIMARY, format=AUDIO, version=1, locale=locale.getdefaultlocale()):
+        Named.__init__(self)
         self.ids = [id]
         self.bitrate = bitrate
         self.type = type
         self.format = format
         self.version = version
         self.locale = locale
-        self.names = []
         self.media = []
         self.genres = []
         self.links = []
         self.simulcasts = []
         self.keywords = []
-        
-    def get_name(self, max_length=LongName.max_length):
-        """returns the first name set with a length at or below the max_length field, which 
-           defaults to the MAX_LENGTH of a LongName field"""
-        for type in [LongName, MediumName, ShortName]:
-            for name in [x for x in self.names if isinstance(x, type)]:
-                if len(name.text) <= max_length: return name        
-        
+                
+    def __repr__(self):
+        return '<Service: %s>' % str(self)
+    
+    def __str__(self):
+        return str(self.get_name())
         
 class ServiceInfo:
     """Top-level Service Information document object"""
@@ -692,4 +713,51 @@ class Genre:
         return str(self.href)
     
     def __repr__(self):
-        return '<Genre: %s>' % str(self)    
+        return '<Genre: %s>' % str(self)   
+    
+class GroupInfo:
+    """The root of a GI document"""
+    
+    DAB="DAB"
+    DRM="DRM"
+    
+    def __init__(self, type=DAB):
+        self.type = type
+        self.groupings = []    
+    
+class ProgrammeGroups:
+    """Contains groups"""
+    
+    def __init__(self, created=datetime.datetime.now(tzlocal()), version=1, originator=None):
+        self.created = created
+        self.version = version
+        self.originator = originator
+        self.groups = []
+    
+class ProgrammeGroup(Named):
+    """
+    This is used to indicate the type of the grouping.
+    """
+    
+    # type enum
+    SERIES = "series"
+    SHOW = "show"
+    CONCEPT = "programConcept"
+    MAGAZINE = "magazine"
+    TOPIC = "topic"
+    COMPILATION = "compilation"
+    OTHER_COLLECTION = "otherCollection"
+    OTHER_CHOICE = "otherChoice"
+    
+    def __init__(self, shortcrid, type, numOfItems, crid=None, version=1):
+        Named.__init__(self)
+        self.shortcrid = shortcrid
+        self.type = type
+        self.numOfItem = numOfItems
+        self.crid = crid
+        self.version = version
+        self.media = []
+        self.genres = []
+        self.keywords = []
+        self.memberships = []
+        self.links = []

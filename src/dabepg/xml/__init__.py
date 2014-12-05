@@ -41,8 +41,8 @@ class MarshallListener:
 def marshall(obj, listener=MarshallListener(), indent=None, **kwargs):
     """Marshalls an :class:Epg or :class:ServiceInfo to its XML document"""
     
-    if isinstance(obj, ServiceInfo): return marshall_serviceinfo(obj, listener, **kwargs)
-    elif isinstance(obj, Epg): return marshall_epg(obj, listener, **kwargs)
+    if isinstance(obj, ServiceInfo): return marshall_serviceinfo(obj, listener=listener, indent=indent, **kwargs)
+    elif isinstance(obj, Epg): return marshall_epg(obj, listener=listener, indent=indent, **kwargs)
     else: raise ValueError('neither a ServiceInfo nor an Epg be')
     
 def marshall_serviceinfo(info, listener=MarshallListener(), indent=None, **kwargs):
@@ -490,20 +490,26 @@ def parse_description(descriptionElement):
         raise ValueError('unknown description element: %s' % descriptionElement)
     
 def parse_multimedia(multimediaElement):
-    multimedia = Multimedia(multimediaElement.attrib['url'])
+    type = None
+    mime = None
+    width = None
+    height = None
     if multimediaElement.attrib.has_key('type'):
-        type = multimediaElement.attrib['type']
-        if type == 'logo_colour_square': multimedia.type = Multimedia.LOGO_COLOUR_SQUARE
-        if type == 'logo_colour_rectangle': multimedia.type = Multimedia.LOGO_COLOUR_RECTANGLE
-        if type == 'logo_mono_rectangle': multimedia.type = Multimedia.LOGO_MONO_RECTANGLE
-        if type == 'logo_mono_square': multimedia.type = Multimedia.LOGO_MONO_SQUARE
-        if type == 'logo_unrestricted': 
-            multimedia.type = Multimedia.LOGO_UNRESTRICTED
+        type_str = multimediaElement.attrib['type']
+        if type_str == 'logo_colour_square': type = Multimedia.LOGO_COLOUR_SQUARE
+        if type_str == 'logo_colour_rectangle': type = Multimedia.LOGO_COLOUR_RECTANGLE
+        if type_str == 'logo_mono_rectangle': type = Multimedia.LOGO_MONO_RECTANGLE
+        if type_str == 'logo_mono_square': type = Multimedia.LOGO_MONO_SQUARE
+        if type_str == 'logo_unrestricted': 
+            type = Multimedia.LOGO_UNRESTRICTED
             if not multimediaElement.attrib.has_key('mimetype') or not multimediaElement.attrib.has_key('width') or not multimediaElement.attrib.has_key('height'):
                 raise ValueError('must specify mimetype, width and height for unrestricted logo')
-    if multimediaElement.attrib.has_key('mimetype'): multimedia.mime = multimediaElement.attrib['mimetype']
-    if multimediaElement.attrib.has_key('width'): multimedia.width = int(multimediaElement.attrib['width'])
-    if multimediaElement.attrib.has_key('height'): multimedia.width = int(multimediaElement.attrib['height'])  
+    if multimediaElement.attrib.has_key('mimetype'): mime = multimediaElement.attrib['mimetype']
+    if multimediaElement.attrib.has_key('width'): width = int(multimediaElement.attrib['width'])
+    if multimediaElement.attrib.has_key('height'): width = int(multimediaElement.attrib['height'])
+    
+    multimedia = Multimedia(multimediaElement.attrib['url'], type=type, mimetype=mime, height=height, width=width)
+  
     return multimedia      
     
 def parse_media(mediaElement):
