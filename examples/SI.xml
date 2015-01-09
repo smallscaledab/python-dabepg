@@ -1,58 +1,397 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serviceInformation creationTime="2001-02-28T00:00:00"
-	originator="BBC" serviceProvider="BBC" system="DAB" version="2"
-	xml:lang="en" xmlns="http://www.worlddab.org/schemas/epgSI/14"
-	xmlns:epg="http://www.worlddab.org/schemas/epgDataTypes/14" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.worlddab.org/schemas/epgSI/14 epgSI_14.xsd">
-	<ensemble id="e1.ce15">
-		<epg:shortName>BBC</epg:shortName>
-		<epg:mediumName>BBC National</epg:mediumName>
-		<frequency kHz="225648" type="primary" />
-		<service bitrate="160" format="audio">
-			<serviceID id="e1.ca15.c221.0" />
-			<epg:shortName>Radio 1</epg:shortName>
-			<epg:mediumName>BBC Radio 1</epg:mediumName>
+<serviceInformation xmlns="http://www.worlddab.org/schemas/epg/31" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:dab="http://www.worlddab.org/schemas/epg/31/dab"
+   xsi:schemaLocation="http://www.worlddab.org/schemas/epg/31 epg_31.xsd
+                       http://www.worlddab.org/schemas/epg/31/dab epg_31_dab.xsd" 
+   creationTime="2014-04-25T00:05:31+01:00" originator="Global Radio"
+   xml:lang="en">  
+	<services>
+      <serviceProvider>
+         <shortName>Global</shortName>
+         <mediumName>Global Radio</mediumName>
+         <mediaDescription>
+            <multimedia url="http://epg.musicradio.com/logos/global/320x240.png" 
+                        mimeValue="image/png" height="240" width="320" />
+         </mediaDescription>
+         <mediaDescription>
+            <multimedia url="http://epg.musicradio.com/logos/global/32x32.png" 
+                        mimeValue="image/png" height="32" width="32" />
+         </mediaDescription>
+         <keywords>radio, television, publishing, talent, charities &amp; communities
+         </keywords>
+         <link uri="http://www.thisisglobal.com" mimeValue="text/html" description="Homepage" />
+         <link uri="postal:Global%20Radio/30%20Leicester%20Square/London/WC2H%207LA" />
+         <link uri="tel:+44-020-77666000" />
+         <geolocation>
+            <country>GB</country>
+            <point>51.473939 -2.508112</point>
+         </geolocation>
+      </serviceProvider> 	
+		<service>
+			<bearer bitrate="48" cost="70"
+				id="http://vis.media-ice.musicradio.com/Capital" mimeValue="audio/aacp"
+				offset="16000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/Capital.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer bitrate="128" cost="73"
+				id="http://vis.media-ice.musicradio.com/CapitalMP3" mimeValue="audio/mpeg"
+				offset="10000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/CapitalMP3.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer cost="30" id="fm:ce1.c479.09580" />
+			<bearer cost="20" id="dab:ce1.c1a5.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1bd.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a4.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c18c.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a7.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c19f.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a1.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1af.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b0.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b1.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a9.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1ab.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1ad.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c185.c479.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c19c.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b2.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b5.c47f.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<shortName>Capital</shortName>
+			<mediumName>Capital FM</mediumName>
+			<longName>Capital London</longName>
 			<mediaDescription>
-				<epg:shortDescription><![CDATA[Rock and pop music from the BBC.]]></epg:shortDescription>
+				<shortDescription>London's No.1 Hit Music Station</shortDescription>
 			</mediaDescription>
 			<mediaDescription>
-				<epg:multimedia type="logo_colour_square"
-					url="http://www.bbc.co.uk/radio1/images/r1logo.png" />
+				<multimedia url="http://owdo.thisisglobal.com/2.0/id/25/logo/32x32.png"
+					width="32" height="32"/>
 			</mediaDescription>
-			<epg:genre href="urn:tva:metadata:cs:ContentCS:2002:3.6.7">
-				<epg:name><![CDATA[Rap/Hip Hop/Reggae]]></epg:name>
-			</epg:genre>
-			<epg:genre href="urn:tva:metadata:cs:ContentCS:2002:3.6.8">
-				<epg:name><![CDATA[Electronic/Club/Urban/Dance]]></epg:name>
-			</epg:genre>
-			<epg:genre href="urn:tva:metadata:cs:ContentCS:2002:2.5.0">
-				<epg:name><![CDATA[ARTISTIC PERFORMANCE]]></epg:name>
-			</epg:genre>
-			<epg:genre href="urn:tva:metadata:cs:ContentCS:2002:1.1.0">
-				<epg:name><![CDATA[ENTERTAINMENT]]></epg:name>
-			</epg:genre>
-			<link mimeType="text/html" url="http://www.bbc.co.uk/radio1" />
-			<keywords><![CDATA[music, pop, rock, dance, hip-hop, soul]]></keywords>
+			<mediaDescription>
+				<multimedia	url="http://owdo.thisisglobal.com/2.0/id/25/logo/112x32.png"
+					width="112" height="32"/>
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia url="http://owdo.thisisglobal.com/2.0/id/25/logo/128x128.png"
+					width="128" height="128"/>
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia url="http://owdo.thisisglobal.com/2.0/id/25/logo/320x240.jpg"
+					width="320" height="240"/>
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia url="http://owdo.thisisglobal.com/2.0/id/25/logo/600x600.jpg"
+					width="600" height="600"/>
+			</mediaDescription>			
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.10">
+				Hit-Chart/Song Requests
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.8">
+				Electronic/Club/Urban/Dance
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.1.1.11">
+				Local/Regional
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.8.14">
+				Dance/Dance-pop
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.1.4.12">
+				Showbiz
+			</genre>
+			<link description="Capital London website" mimeValue="text/html"
+				uri="http://www.capitalfm.com/london" />
+			<link description="Capital London on Twitter" mimeValue="text/html"
+				uri="http://twitter.com/958capitalfm" />
+			<link description="Capital London on Facebook" mimeValue="text/html"
+				uri="http://www.facebook.com/958CapitalFM" />
+			<link description="Capital London on TuneIn" uri="http://www.tunein.com/radio/s-s16534" />
+			<link description="Capital London on Wikipedia" mimeValue="text/html"
+				uri="http://en.wikipedia.org/wiki/Capital_London" />
+			<radiodns fqdn="www.capitalfm.com" serviceIdentifier="london" />
+         <geolocation>
+            <polygon>
+               51.524124 -2.709503 51.572803 -2.668304 51.616310 -2.572174
+               51.575363 -2.412872 51.504471 -2.379913 51.426613 -2.471924
+               51.400063 -2.460937 51.387211 -2.511749 51.328896 -2.708130
+               51.273087 -2.772675 51.238705 -2.938843 51.258476 -3.036346
+               51.376068 -3.026733 51.472401 -2.859879 51.524124 -2.709503
+            </polygon>
+            <country>GB</country>            
+         </geolocation>			
+			<serviceGroupMember id="capital" />
 		</service>
-		<service format="audio">
-			<serviceID id="e1.ca15.c222.0" />
-			<epg:shortName>Radio 2</epg:shortName>
-			<epg:mediumName>BBC Radio 2</epg:mediumName>
+		<service>
+			<bearer bitrate="48" cost="70"
+				id="http://vis.media-ice.musicradio.com/XFM" mimeValue="audio/aacp"
+				offset="16000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/XFM.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer bitrate="128" cost="73"
+				id="http://vis.media-ice.musicradio.com/XFMMP3" mimeValue="audio/mpeg"
+				offset="10000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/XFMMP3.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer cost="30" id="fm:ce1.c474.10490" />
+			<bearer cost="20" id="dab:ce1.c1a4.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a2.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c19d.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c19f.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a1.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a7.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1ae.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1af.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b0.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1ad.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a8.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1a9.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1ab.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c1b1.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c183.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c185.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c19c.c474.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<shortName>XFM</shortName>
+			<mediumName>XFM London</mediumName>
+			<mediaDescription>
+				<shortDescription>Music That Rocks</shortDescription>
+			</mediaDescription>
+<mediaDescription>
+				<multimedia type="logo_colour_square"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/32x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia type="logo_colour_rectangle"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/112x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="128" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/128x128.png"
+					width="128" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="240" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/320x240.jpg"
+					width="320" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="480" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/640x480.jpg"
+					width="640" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="600" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/600x600.jpg"
+					width="600" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="800" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/69/logo/800x800.jpg"
+					width="800" />
+			</mediaDescription>			
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.4.4">
+				Soft/Slow rock
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.1.1.11">
+				Local/Regional
+			</genre>
+			<link description="XFM London website" mimeValue="text/html"
+				uri="http://www.xfm.co.uk/london" />
+			<link description="XFM London on Twitter" mimeValue="text/html"
+				uri="http://twitter.com/xfm" />
+			<link description="XFM London on TuneIn" uri="http://www.tunein.com/radio/s-s7622" />
+			<link description="XFM London on Wikipedia" mimeValue="text/html"
+				uri="http://en.wikipedia.org/wiki/XFM_London" />			
+			<radiodns fqdn="www.xfm.co.uk" serviceIdentifier="london" />
+			<serviceGroupMember id="xfm" />
 		</service>
-		<service format="audio">
-			<serviceID id="e1.ca15.c223.0" />
-			<epg:shortName>Radio 3</epg:shortName>
-			<epg:mediumName>BBC Radio 3</epg:mediumName>
+		<service>
+			<bearer bitrate="48" cost="70"
+				id="http://vis.media-ice.musicradio.com/ClassicFM" mimeValue="audio/aacp"
+				offset="16000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/ClassicFM.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer bitrate="128" cost="73"
+				id="http://vis.media-ice.musicradio.com/ClassicFMMP3" mimeValue="audio/mpeg"
+				offset="10000" />
+			<bearer cost="35"
+				id="http://vis.media-ice.musicradio.com/ClassicFMMP3.m3u" mimeValue="audio/x-mpegurl" />
+			<bearer cost="30" id="fm:ce1.c2a1.*" />
+			<bearer cost="30" id="fm:ce1.c4a1.*" />
+			<bearer cost="30" id="fm:ce1.c5a1.*" />
+			<bearer cost="30" id="fm:ce1.c6a1.*" />
+			<bearer cost="30" id="fm:ce1.c7a1.*" />
+			<bearer cost="30" id="fm:ce1.c8a1.*" />
+			<bearer cost="20" id="dab:ce1.c181.c2a1.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<bearer cost="20" id="dab:ce1.c193.c2a1.0" mimeValue="audio/mpeg"
+				offset="2500" />
+			<shortName>Classic</shortName>
+			<mediumName>Classic FM</mediumName>
+			<mediaDescription>
+				<shortDescription>The World's Greatest Music</shortDescription>
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia type="logo_colour_square"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/32x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia type="logo_colour_rectangle"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/112x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="128" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/128x128.png"
+					width="128" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="240" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/320x240.jpg"
+					width="320" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="480" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/640x480.jpg"
+					width="640" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="600" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/600x600.jpg"
+					width="600" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="800" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/43/logo/800x800.jpg"
+					width="800" />
+			</mediaDescription>			
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.6.1">
+				Classical music
+			</genre>
+			<genre href="urn:tva:metadata:cs:ContentCS:2004:3.1.1">
+				News
+			</genre>
+			<link description="Classic FM website" mimeValue="text/html"
+				uri="http://www.classicfm.com/" />
+			<link description="Text the Studio" uri="sms:61812" />
+			<link description="Classic FM on Twitter" mimeValue="text/html"
+				uri="http://twitter.com/classicfm" />
+			<link description="Classic FM on Facebook" mimeValue="text/html"
+				uri="http://www.facebook.com/ClassicFM" />
+			<link description="Classic FM on TuneIn" uri="http://www.tunein.com/radio/s-s8439" />
+			<link description="Classic FM on Wikipedia" mimeValue="text/html"
+				uri="http://en.wikipedia.org/wiki/Classic_FM_(UK)" />
+			<radiodns fqdn="www.classicfm.com" serviceIdentifier="classicfm" />
 		</service>
-		<service format="audio">
-			<serviceID id="e1.ca15.c224.0" />
-			<epg:shortName>Radio 4</epg:shortName>
-			<epg:mediumName>BBC Radio 4</epg:mediumName>
-		</service>
-		<service format="audio">
-			<serviceID id="e1.ca15.c225.0" />
-			<epg:shortName>Radio 5</epg:shortName>
-			<epg:mediumName>BBC Radio 5</epg:mediumName>
-		</service>
-	</ensemble>
+	</services>
+	<serviceGroups>
+		<serviceGroup id="capital">
+			<shortName>Capital</shortName>
+			<mediumName>Capital FM</mediumName>
+			<mediaDescription>
+				<longDescription xml:lang="en-GB">
+Capital FM offers the very best Hit Music, the hottest showbiz and artist interviews, massive prizes, up-to-date local news, traffic and travel throughout the day.
+</longDescription>
+			</mediaDescription>
+			<mediaDescription>
+				<shortDescription xml:lang="en-GB">The UK's No.1 Hit Music Station</shortDescription>
+			</mediaDescription>
+<mediaDescription>
+				<multimedia type="logo_colour_square"
+					url="http://owdo.thisisglobal.com/2.0/id/153/logo/32x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia type="logo_colour_rectangle"
+					url="http://owdo.thisisglobal.com/2.0/id/153/logo/32x96.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="128" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/153/logo/128x128.jpg"
+					width="128" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="240" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/153/logo/320x240.jpg"
+					width="320" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="480" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/153/logo/640x480.jpg"
+					width="640" />
+			</mediaDescription>			
+			<link description="Text the Studio" uri="sms:83958" />
+			<link description="Capital FM on Twitter" mimeValue="text/html"
+				uri="http://twitter.com/capitalofficial" />
+			<link description="Capital FM on Facebook" mimeValue="text/html"
+				uri="http://www.facebook.com/CapitalFM" />
+			<link description="Capital FM on Wikipedia" mimeValue="text/html"
+				uri="http://en.wikipedia.org/wiki/Capital_(radio_network)" />
+		</serviceGroup>
+		<serviceGroup id="xfm">
+			<shortName>XFM</shortName>
+			<mediumName>XFM</mediumName>
+			<mediaDescription>
+				<shortDescription xml:lang="en-GB">Music That Rocks</shortDescription>
+			</mediaDescription>
+	<mediaDescription>
+				<multimedia type="logo_colour_square"
+					url="http://owdo.thisisglobal.com/2.0/id/172/logo/32x32.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia type="logo_colour_rectangle"
+					url="http://owdo.thisisglobal.com/2.0/id/172/logo/32x96.png" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="128" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/172/logo/128x128.jpg"
+					width="128" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="240" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/172/logo/320x240.jpg"
+					width="320" />
+			</mediaDescription>
+			<mediaDescription>
+				<multimedia height="480" type="logo_unrestricted"
+					url="http://owdo.thisisglobal.com/2.0/id/172/logo/640x480.jpg"
+					width="640" />
+			</mediaDescription>			
+			<link description="Text the Studio" uri="sms:83936" />
+			<link description="XFM on Facebook" mimeValue="text/html"
+				uri="http://www.facebook.com/xfmradio" />
+			<link description="XFM on Wikipedia" mimeValue="text/html"
+				uri="http://en.wikipedia.org/wiki/XFM" />
+		</serviceGroup>
+	</serviceGroups>
 </serviceInformation>

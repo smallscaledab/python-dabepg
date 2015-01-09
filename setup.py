@@ -3,10 +3,10 @@
 from distutils.core import setup
 
 setup(name='python-dabepg',
-      version='0.4.0',
-      description='DAB EPG XML/binary implementation',
+      version='0.5.0_spi31',
+      description='Hybrid Radio SPI XML/binary implementation',
       author='Ben Poor',
       author_email='magicbadger@gmail.com',
-      packages=['dabepg', 'dabepg.xml', 'dabepg.binary'],
+      packages=['spi', 'spi.xml', 'spi.binary'],
       package_dir = {'' : 'src'}
 )
